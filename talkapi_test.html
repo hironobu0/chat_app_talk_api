@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>talkAPI</title>
+  </head>
+  <body>
+    <div>
+      コメントを入力<input id="talk" type="text" size="45" />
+      <input type="button" id="btn" value="送信" /><br />
+    </div>
+    <table id="table">
+      <tr>
+        <th>返答</th>
+      </tr>
+    </table>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      //リクエスト・レスポンスの表示3つずつ
+      //現在地からのお店の抽出
+
+      //*****************************************************
+      // Click Event
+      // ぐるなびAPIへデータRequest → APIサーバーからresponseデータ取得
+      //*****************************************************
+      $('#btn').on('click', function () {
+        //送信データをObject変数で用意
+
+        const base_url =
+          'https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk';
+        const apikey = 'DZZgKUUAMmCtNJbnYYraimLZ62HR1GvK';
+
+        let talk = document.getElementById('talk').value;
+        let re = null;
+        console.log(talk);
+
+        let params = new URLSearchParams();
+        params.append('apikey', apikey);
+        params.append('query', talk);
+
+        axios.post(base_url, params).then((response) => {
+          get_reply = response.data.results[0].reply;
+          const table = document.getElementById('table');
+          const add_talk = document.createElement('th');
+          add_talk.textContent = get_reply;
+          table.appendChild(add_talk);
+        });
+
+        // const data = {
+        //   apikey: 'DZZgKUUAMmCtNJbnYYraimLZ62HR1GvK',
+        //   // query: 'こんにちは',
+        //   //   token: $('#key').val(),
+        // };
+
+        // //Ajax（非同期通信）
+        // axios
+        //   .post('https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk', {
+        //     params: data,
+        //   })
+        //   .then(function (response) {
+        //     //データ受信成功！！showData関数にデータを渡す
+        //     showData(response.data);
+        //   })
+        //   .catch(function (error) {
+        //     console.log(error); //通信Error
+        //   })
+        //   .then(function () {
+        //     //console.log("Last");//通信OK/Error後に処理を必ずさせたい場合
+        //   });
+      });
+
+      //*****************************************************
+      //ぐるなびデータ表示処理
+      //*****************************************************
+      function showData(data) {
+        //データ確認用
+        console.log(data);
+
+        //データを繰り返し処理で取得
+        // const len = data.rest.length; //データ数を取得
+        // for (let i = 0; i < len; i++) {
+        //   $('#table').append(
+        //     '<tr><td>' +
+        //       data.rest[i].name +
+        //       '</td><td>' +
+        //       data.rest[i].opentime +
+        //       '</td></tr>'
+        //   );
+        // }
+      }
+    </script>
+  </body>
+</html>

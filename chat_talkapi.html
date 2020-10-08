@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Chatアプリ</title>
+  </head>
+  <header>
+    <h1>RINE</h1>
+  </header>
+
+  <body>
+    <!-- コンテンツ表示画面 -->
+    <div class="main">
+      <div class="talk_box">
+        <div id="output"></div>
+      </div>
+
+      <div class="input_box">
+        <div class="input_container">
+          <div class="character_box">
+            <img
+              class="character_img"
+              id="buke-img"
+              src="imgs/buke.png"
+              alt=""
+            />
+            <img
+              class="character_img"
+              id="caram-img"
+              src="imgs/caram.png"
+              alt=""
+            />
+            <img
+              class="character_img"
+              id="tuku-img"
+              src="imgs/tuku.jpg"
+              alt=""
+            />
+          </div>
+          <div class="input_name">
+            <input
+              type="text"
+              id="uname"
+              placeholder="名前を入力してください"
+            />
+          </div>
+        </div>
+
+        <div>
+          <textarea
+            id="text"
+            cols="40"
+            rows="6"
+            placeholder="テキストを入力してください"
+          ></textarea>
+        </div>
+        <button id="send">送信</button>
+      </div>
+    </div>
+
+    <!--/ コンテンツ表示画面 -->
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- JQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!--** 以下Firebase **-->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script src="js/chat.js"></script>
+  </body>
+</html>
